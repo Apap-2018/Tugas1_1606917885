@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+	<title th:replace="fragments/fragment :: title"></title>
+	
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
+  <!--main-->
+  <div class="container-fluid">
+    <div class="header">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Lihat Detail Jabatan</h1>
+          <h3 th:text="${jabatan.nama}"></h3>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div id="detail-jabatan">
+    <!--Nama-->
+    <div class="row">
+      <div class="col-sm-4"><p>Nama</p></div>
+      <div class="col-sm-8"><p th:text="${jabatan.nama}"></p></div>
+    </div>
+    <!--Deskripsi-->
+    <div class="row">
+      <div class="col-sm-4"><p>Deskripsi</p></div>
+      <div class="col-sm-8"><p th:text="${jabatan.deskripsi}">Jakarta</p></div>
+    </div>
+    <!--Gaji Pokok-->
+    <div class="row">
+      <div class="col-sm-4"><p>Gaji</p></div>
+      <div class="col-sm-8"><p th:text="${jabatan.gaji_pokok}"></p></div>
+    </div>
+    <!--Jumlah Pegawai-->
+    <div class="row">
+      <div class="col-sm-4"><p>Jumlah Pegawai</p></div>
+      <div class="col-sm-8"><p th:text="${jumlahPegawai}"></p></div>
+    </div>
+    <br>
+    <!--button-->
+    <div class="row">
+      <div class="col-sm-1">
+      	<form th:action="@{/jabatan/ubah}" method="GET">
+	   		<input type="hidden" name="id" th:value="${jabatan.id}">
+	   		<button type="submit" class="btn btn-dark">Ubah</button>
+	    </form>
+      </div>
+      <div class="col-sm-1">
+      	<form th:action="@{/jabatan/hapus}" th:object="${jabatan}" method="POST">
+	   		<input type="hidden" name="id" th:value="*{id}">
+	   		<div th:each="pegawai, rowStat : *{listPegawai}">
+	   			<input type="hidden" th:field="*{listPegawai[__${rowStat.index}__].id}" />
+	   		</div>
+	   		<button type="submit" class="btn btn-danger">Hapus</button>
+	    </form>
+      </div>
+    </div>
+   </div>
+  </body>
+</html>

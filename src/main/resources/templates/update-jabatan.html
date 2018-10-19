@@ -1,0 +1,52 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:replace="fragments/fragment :: title"></title>
+	
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<!--main-->
+<div class="container-fluid">
+  <div class="header">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>Tambah Jabatan</h1>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <br>
+  <div id="update-jabatan">
+  	<form th:action="@{/jabatan/ubah}" th:object="${jabatan}" method="POST">
+  		<input type="hidden" name="id" th:value="*{id}">
+  		<div class = "row">
+  			<div class="col-sm-3"><p>Nama</p></div>
+  			<div class="col-sm-9">
+				<input type="text" class="form-control" name="nama" th:value="*{nama}">
+			</div>
+  		</div>
+  		<br>
+  		<div class = "row">
+  			<div class="col-sm-3"><p>Deskripsi</p></div>
+  			<div class="col-sm-9">
+				<input type="text" class="form-control" name="deskripsi" th:value="*{deskripsi}">
+			</div>
+  		</div>
+  		<br>
+  		<div class = "row">
+  			<div class="col-sm-3"><p>Gaji Pokok</p></div>
+  			<div class="col-sm-9">
+  				<input type="number" class="form-control" name="gaji_pokok" th:value="*{gaji_pokok}">
+  			</div>
+  		</div>
+  		<br>
+  		<button type="submit" class="btn btn-dark">Simpan</button>
+  	</form>
+  </div>
+</div>
+</body>
+</html>

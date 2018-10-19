@@ -1,0 +1,157 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+	<title th:replace="fragments/fragment :: title"></title>
+	
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
+  <!--main-->
+  <div class="container-fluid">
+    <div class="header">
+      <div class="row">
+        <div class="col-sm-6">
+          <h1>Detail Pegawai Termuda</h1>
+        </div>
+        <div class="col-sm-6">
+          <h1>Detail Pegawai Tertua</h1>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div id="detail-pegawai-termuda-tertua">
+    <!--NIP-->
+    <div class="row">
+    	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>NIP</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.nip}">1103030170201801</p></div>
+    	</div>
+      	</div>
+      	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>NIP</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTertua.nip}">1103030170201801</p></div>
+    	</div>
+      	</div>
+    </div>
+    <!--Nama-->
+    <div class="row">
+    	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Nama</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.nama}">1103030170201801</p></div>
+    	</div>
+      	</div>
+      	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Nama</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTertua.nama}">1103030170201801</p></div>
+    	</div>
+      	</div>
+    </div>
+    <!--Tempat Lahir-->
+    <div class="row">
+    	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Tempat Lahir</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.tempat_lahir}">1103030170201801</p></div>
+    	</div>
+      	</div>
+      	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Tempat Lahir</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTertua.tempat_lahir}">1103030170201801</p></div>
+    	</div>
+      	</div>
+    </div>
+    <!--Tanggal Lahir-->
+    <div class="row">
+    	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Tanggal Lahir</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.tanggal_lahir}"></p></div>
+    	</div>
+      	</div>
+      	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Tanggal Lahir</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTertua.tanggal_lahir}"></p></div>
+    	</div>
+      	</div>
+    </div>
+    <!--Tahun Masuk-->
+    <div class="row">
+    	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Tahun Masuk</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.tahun_masuk}"></p></div>
+    	</div>
+      	</div>
+      	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Tahun Masuk</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTertua.tahun_masuk}"></p></div>
+    	</div>
+      	</div>
+    </div>
+    <!--Instansi-->
+    <div class="row">
+    	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Nama Instansi</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.instansi.nama}"></p></div>
+    	</div>
+      	</div>
+      	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Nama Instansi</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTertua.instansi.nama}"></p></div>
+    	</div>
+      	</div>
+    </div>
+    <!--Jabatan-->
+    <div class="row">
+    	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Jabatan</p></div>
+    		<div class="col-sm-6">
+    			<ul th:each="jabatan: ${pegawaiTermuda.jabatan}">
+          			<li th:text="${jabatan.nama}">Seksi Penyuluhan</li>
+        		</ul>
+        	</div>
+    	</div>
+      	</div>
+      	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Jabatan</p></div>
+    		<div class="col-sm-6">
+    			<ul th:each="jabatan: ${pegawaiTertua.jabatan}">
+          			<li th:text="${jabatan.nama}">Seksi Penyuluhan</li>
+        		</ul>
+        	</div>
+    	</div>
+      	</div>
+    </div>
+    <!--Gaji-->
+    <div class="row">
+    	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Gaji</p></div>
+    		<div class="col-sm-6"><p th:text="${gajiTermuda}"></p></div>
+    	</div>
+      	</div>
+      	<div class="col-sm-6">
+    	<div class="row">
+    		<div class="col-sm-6"><p>Gaji</p></div>
+    		<div class="col-sm-6"><p th:text="${gajiTertua}"></p></div>
+    	</div>
+      	</div>
+    </div>
+	</div>
+   </div>
+  </body>
+</html>

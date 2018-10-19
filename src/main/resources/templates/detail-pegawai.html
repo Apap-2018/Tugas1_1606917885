@@ -1,0 +1,73 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+	<title th:replace="fragments/fragment :: title"></title>
+	
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+
+  <!--main-->
+  <div class="container-fluid">
+    <div class="header">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>Lihat Data Pegawai</h1>
+          <h3 th:text="${pegawai.nip}">110303017021801</h3>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div id="detail-pegawai">
+    <!--NIP-->
+    <div class="row">
+    	<div class="col-sm-6"><p>NIP</p></div>
+      	<div class="col-sm-6"><p th:text="${pegawai.nip}">1103030170201801</p></div>
+    </div>
+    <!--Nama-->
+    <div class="row">
+      <div class="col-sm-6"><p>Nama</p></div>
+      <div class="col-sm-6"><p th:text="${pegawai.nama}">Miftachul Yasin</p></div>
+    </div>
+    <!--Tempat Lahir-->
+    <div class="row">
+      <div class="col-sm-6"><p>Tempat Lahir</p></div>
+      <div class="col-sm-6"><p th:text="${pegawai.tempat_lahir}">Jakarta</p></div>
+    </div>
+    <!--Tanggal Lahir-->
+    <div class="row">
+      <div class="col-sm-6"><p>Tanggal Lahir</p></div>
+      <div class="col-sm-6"><p th:text="${pegawai.tanggal_lahir}">1970-03-03 07:00:00.0</p></div>
+    </div>
+    <!--Tahun Masuk-->
+    <div class="row">
+      <div class="col-sm-6"><p>Tahun Masuk</p></div>
+      <div class="col-sm-6"><p th:text="${pegawai.tahun_masuk}">2018</p></div>
+    </div>
+    <!--Instansi-->
+    <div class="row">
+      <div class="col-sm-6"><p>Nama Instansi</p></div>
+      <div class="col-sm-6"><p th:text="${pegawai.instansi.nama}">Dinas Kependidikan dan Catatan Sipil - ACEH</p></div>
+    </div>
+    <!--Jabatan-->
+    <div class="row">
+      <div class="col-sm-6"><p>Jabatan</p></div>
+      <div class="col-sm-6">
+        <ul th:each="jabatan: ${pegawai.jabatan}">
+          <li th:text="${jabatan.nama}">Seksi Penyuluhan</li>
+        </ul>
+      </div>
+    </div>
+    <!--Gaji-->
+    <div class="row">
+      <div class="col-sm-6"><p>Gaji</p></div>
+      <div class="col-sm-6"><p th:text="${gaji}"></p></div>
+    </div>
+    <!--button-->
+    <a class="btn btn-dark" href="ubah-pegawai.html" role="button">Ubah</a>
+	</div>
+   </div>
+  </body>
+</html>
