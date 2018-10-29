@@ -20,7 +20,7 @@
   </div>
   <hr>
   <!-- find by -->
-  <form>
+  <form th:action="@{/pegawai/cari}" method="GET">
   <div class="row">
   	<div class="col-sm-6">
   	<h5>Cari berdasarkan:</h5>
@@ -28,9 +28,12 @@
 	    <div class="row">
 	      <div class="col-sm-3"><p>Provinsi</p></div>
 	      <div class="col-sm-6">
-	      	<select class="form-control" id="listProvinsi" name="id">
+	      	<select class="form-control" name="idProvinsi" id="listProvinsi" onchange="document.getElementById('select').value='';filter(this.value)">
 	      		<option value="">-Pilih Provinsi-</option>
-				<option th:each="provinsi: ${listProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}">1</option>
+				<div th:each="provinsi : ${listProvinsi}">
+					<option th:if="${provinsi.id==idProvinsi}" selected th:value="${provinsi.id}" th:text="${provinsi.nama}"></option>
+					<option th:unless="${provinsi.id}==idProvinsi" th:value="${provinsi.id}" th:text="${provinsi.nama}"></option>
+				</div>
 			</select>
 	      </div>
 	    </div>
@@ -39,9 +42,12 @@
 	    <div class="row">
 	      <div class="col-sm-3"><p>Nama Instansi</p></div>
 	      <div class="col-sm-6">
-	      	<select class="form-control" id="listInstansi" name="id">
+	      	<select class="form-control" id="listInstansi" name="idInstansi">
 	      		<option value="">-Pilih Instansi-</option>
-				<option th:each="instansi: ${listInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}">1</option>
+	      		<div th:each="instansi : ${listInstansi}">
+					<option th:if="${instansi.id==idInstansi}" selected th:data-id-prov="${instansi.provinsi.id}" th:value="${instansi.id}" th:text="${instansi.nama}+' - '+${instansi.provinsi.nama}"></option>
+					<option th:unless="${instansi.id==idInstansi}" th:data-id-prov="${instansi.provinsi.id}" th:value="${instansi.id}" th:text="${instansi.nama}+' - '+${instansi.provinsi.nama}"></option>
+				</div>
 			</select>
 	      </div>
 	    </div>
@@ -50,9 +56,12 @@
 	    <div class="row">
 	      <div class="col-sm-3"><p>Jabatan</p></div>
 	      <div class="col-sm-6">
-	        <select class="form-control" id="listJabatan" name="id">
+	        <select class="form-control" id="listJabatan" name="idJabatan">
 	        	<option value="">-Pilih Jabatan-</option>
-				<option th:each="jabatan: ${listJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}">1</option>
+				<div th:each="jabatan : ${listJabatan}">
+					<option th:if="${jabatan.id==idJabatan}" selected th:text="${jabatan.nama}" th:value="${jabatan.id}"></option>
+					<option th:unless="${jabatan.id==idJabatan}" th:text="${jabatan.nama}" th:value="${jabatan.id}"></option>
+				</div>
 			</select>
 	      </div>
 	  	</div>
@@ -93,6 +102,20 @@
 	$(document).ready(function() {
 	    $('#list-pegawai').DataTable();
 	} );
+</script>
+
+<script>
+$(document).ready( function () {
+	filter(document.getElementById("selectprov").value);
+} );
+function filter(keyword) {
+    var select = document.getElementById("select");
+    for (var i = 1; i < select.length; i++) {
+        var txt = select.options[i].getAttribute('data-id-prov');
+        var include = txt.startsWith(keyword); 
+        select.options[i].style.display = include ? 'list-item':'none';
+    }
+}
 </script>
 </body>
 </html>
