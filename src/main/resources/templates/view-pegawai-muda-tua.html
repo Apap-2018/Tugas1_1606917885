@@ -58,13 +58,13 @@
     	<div class="col-sm-6">
     	<div class="row">
     		<div class="col-sm-6"><p>Tempat Lahir</p></div>
-    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.tempat_lahir}">1103030170201801</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.tempatLahir}">1103030170201801</p></div>
     	</div>
       	</div>
       	<div class="col-sm-6">
     	<div class="row">
     		<div class="col-sm-6"><p>Tempat Lahir</p></div>
-    		<div class="col-sm-6"><p th:text="${pegawaiTertua.tempat_lahir}">1103030170201801</p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTertua.tempatLahir}">1103030170201801</p></div>
     	</div>
       	</div>
     </div>
@@ -73,13 +73,13 @@
     	<div class="col-sm-6">
     	<div class="row">
     		<div class="col-sm-6"><p>Tanggal Lahir</p></div>
-    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.tanggal_lahir}"></p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.tanggalLahir}"></p></div>
     	</div>
       	</div>
       	<div class="col-sm-6">
     	<div class="row">
     		<div class="col-sm-6"><p>Tanggal Lahir</p></div>
-    		<div class="col-sm-6"><p th:text="${pegawaiTertua.tanggal_lahir}"></p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTertua.tanggalLahir}"></p></div>
     	</div>
       	</div>
     </div>
@@ -88,13 +88,13 @@
     	<div class="col-sm-6">
     	<div class="row">
     		<div class="col-sm-6"><p>Tahun Masuk</p></div>
-    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.tahun_masuk}"></p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.tahunMasuk}"></p></div>
     	</div>
       	</div>
       	<div class="col-sm-6">
     	<div class="row">
     		<div class="col-sm-6"><p>Tahun Masuk</p></div>
-    		<div class="col-sm-6"><p th:text="${pegawaiTertua.tahun_masuk}"></p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTertua.tahunMasuk}"></p></div>
     	</div>
       	</div>
     </div>
@@ -103,13 +103,13 @@
     	<div class="col-sm-6">
     	<div class="row">
     		<div class="col-sm-6"><p>Nama Instansi</p></div>
-    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.instansi.nama}"></p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTermuda.instansi.nama} + ' - ' + ${pegawaiTermuda.instansi.provinsi.nama}"></p></div>
     	</div>
       	</div>
       	<div class="col-sm-6">
     	<div class="row">
     		<div class="col-sm-6"><p>Nama Instansi</p></div>
-    		<div class="col-sm-6"><p th:text="${pegawaiTertua.instansi.nama}"></p></div>
+    		<div class="col-sm-6"><p th:text="${pegawaiTertua.instansi.nama} + ' - ' + ${pegawaiTertua.instansi.provinsi.nama}"></p></div>
     	</div>
       	</div>
     </div>
@@ -133,21 +133,6 @@
           			<li th:text="${jabatan.nama}">Seksi Penyuluhan</li>
         		</ul>
         	</div>
-    	</div>
-      	</div>
-    </div>
-    <!--Gaji-->
-    <div class="row">
-    	<div class="col-sm-6">
-    	<div class="row">
-    		<div class="col-sm-6"><p>Gaji</p></div>
-    		<div class="col-sm-6"><p th:text="${gajiTermuda}"></p></div>
-    	</div>
-      	</div>
-      	<div class="col-sm-6">
-    	<div class="row">
-    		<div class="col-sm-6"><p>Gaji</p></div>
-    		<div class="col-sm-6"><p th:text="${gajiTertua}"></p></div>
     	</div>
       	</div>
     </div>

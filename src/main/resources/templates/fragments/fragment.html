@@ -10,7 +10,7 @@
 		</head>
 		
 		<head th:fragment="js">
-			<script th:src="@{/js/jquery3.2.1.slim.min.js}"></script>
+			<script th:src="@{/js/jquery.min.js}"></script>
 			<script th:src="@{/js/popper.min.js}"></script>
     		<script th:src="@{/js/bootstrap.min.js}"></script>
     		<script th:src="@{/DataTables-1.10.18/js/jquery.dataTables.min.js}"></script>
@@ -28,7 +28,7 @@
 	          <a class="nav-item nav-link" th:href="@{/}">Home</a>
 	          <a class="nav-item nav-link" th:href="@{/pegawai/tambah}">Tambah Pegawai</a>
 	          <a class="nav-item nav-link" th:href="@{/jabatan/tambah}">Tambah Jabatan</a>
-	          <a class="nav-item nav-link" href="cari-pegawai.html">Cari Pegawai</a>
+	          <a class="nav-item nav-link" th:href="@{/pegawai/cari}">Cari Pegawai</a>
 	          <a class="nav-item nav-link" th:href="@{/jabatan/viewall}">Lihat Semua Jabatan</a>
 	        </div>
 	      </div>

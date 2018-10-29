@@ -34,22 +34,22 @@
     <!--Tempat Lahir-->
     <div class="row">
       <div class="col-sm-6"><p>Tempat Lahir</p></div>
-      <div class="col-sm-6"><p th:text="${pegawai.tempat_lahir}">Jakarta</p></div>
+      <div class="col-sm-6"><p th:text="${pegawai.tempatLahir}">Jakarta</p></div>
     </div>
     <!--Tanggal Lahir-->
     <div class="row">
       <div class="col-sm-6"><p>Tanggal Lahir</p></div>
-      <div class="col-sm-6"><p th:text="${pegawai.tanggal_lahir}">1970-03-03 07:00:00.0</p></div>
+      <div class="col-sm-6"><p th:text="${pegawai.tanggalLahir}">1970-03-03 07:00:00.0</p></div>
     </div>
     <!--Tahun Masuk-->
     <div class="row">
       <div class="col-sm-6"><p>Tahun Masuk</p></div>
-      <div class="col-sm-6"><p th:text="${pegawai.tahun_masuk}">2018</p></div>
+      <div class="col-sm-6"><p th:text="${pegawai.tahunMasuk}">2018</p></div>
     </div>
     <!--Instansi-->
     <div class="row">
       <div class="col-sm-6"><p>Nama Instansi</p></div>
-      <div class="col-sm-6"><p th:text="${pegawai.instansi.nama}">Dinas Kependidikan dan Catatan Sipil - ACEH</p></div>
+      <div class="col-sm-6"><p th:text="${pegawai.instansi.nama} + ' - ' + ${pegawai.instansi.provinsi.nama}" >Dinas Kependidikan dan Catatan Sipil - ACEH</p></div>
     </div>
     <!--Jabatan-->
     <div class="row">
@@ -66,7 +66,14 @@
       <div class="col-sm-6"><p th:text="${gaji}"></p></div>
     </div>
     <!--button-->
-    <a class="btn btn-dark" href="ubah-pegawai.html" role="button">Ubah</a>
+    <div class="row">
+      <div class="col-sm-1">
+      	<form th:action="@{/pegawai/ubah}" method="GET">
+	   		<input type="hidden" name="nip" th:value="${pegawai.nip}">
+	   		<button type="submit" class="btn btn-dark">Ubah</button>
+	    </form>
+      </div>
+    </div>
 	</div>
    </div>
   </body>

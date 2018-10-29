@@ -76,7 +76,7 @@ public class InstansiModel implements Serializable{
 		return listPegawai;
 	}
 
-	public void setInstansiPegawai(List<PegawaiModel> listPegawai) {
+	public void setListPegawai(List<PegawaiModel> listPegawai) {
 		this.listPegawai = listPegawai;
 	}
 

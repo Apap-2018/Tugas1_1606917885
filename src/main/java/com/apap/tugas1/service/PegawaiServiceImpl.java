@@ -1,5 +1,6 @@
 package com.apap.tugas1.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,55 @@ public class PegawaiServiceImpl implements PegawaiService {
 	public PegawaiModel getPegawaiDetailByNip(String nip) {
 		return pegawaiDb.findByNip(nip);
 	}
+	
+	
+	@Override
+	public List<PegawaiModel> getListPegawai() {
+		return pegawaiDb.findAll();
+	}
+
+
+	@Override
+	public void addPegawai(PegawaiModel pegawai) {
+		pegawaiDb.save(pegawai);
+	}
+	
+	@Override
+public String generateNip(PegawaiModel pegawai) {
+	   String kodeInstansi = String.valueOf(pegawai.getInstansi().getId());
+	   String[] dateSplit = String.valueOf(pegawai.getTanggalLahir().toString()).split("-");
+	   String tahun = dateSplit[0];
+	   String bulan = dateSplit[1];
+	   String tanggal = dateSplit[2];
+	   tahun = tahun.substring(2, 4);
+	   String tahunMasuk = pegawai.getTahunMasuk();
+	   
+	   // generate nomor urut
+	   int noUrut;
+	   List<PegawaiModel> listPegawai = pegawaiDb.findByInstansiAndTanggalLahirAndTahunMasukOrderByNipAsc(pegawai.getInstansi(), pegawai.getTanggalLahir(), pegawai.getTahunMasuk());
+	   if(listPegawai.size() == 0) {
+		   noUrut = 1;
+	   }
+	   else {
+		   PegawaiModel lastPegawai = listPegawai.get(listPegawai.size() - 1);
+		   noUrut =Integer.parseInt(lastPegawai.getNip().substring(14, 16)) + 1;
+	   }
+	   String noUrutStr;
+	   if(noUrut == 0) {
+		   noUrutStr = "01";
+	   }
+	   else if (noUrut < 10) {
+		   noUrutStr = "0";
+		   noUrutStr += String.valueOf(noUrut);
+	   }
+	   else {
+		   noUrutStr = String.valueOf(noUrut);
+	   }
+	   // END generate nomor urut
+	   String nip = kodeInstansi + tanggal + bulan + tahun + tahunMasuk + noUrutStr;
+	   return nip;
+	}
+
 
 	@Override
 	public double generateGaji(PegawaiModel pegawai) {
@@ -45,7 +95,7 @@ public class PegawaiServiceImpl implements PegawaiService {
 				pegawaiTertua = pegawai;
 			}
 			else {
-				if(pegawai.getTanggal_lahir().compareTo(pegawaiTertua.getTanggal_lahir()) < 0)
+				if(pegawai.getTanggalLahir().compareTo(pegawaiTertua.getTanggalLahir()) < 0)
 					pegawaiTertua = pegawai;
 			}
 		}
@@ -61,11 +111,16 @@ public class PegawaiServiceImpl implements PegawaiService {
 				pegawaiTermuda = pegawai;
 			}
 			else {
-				if(pegawai.getTanggal_lahir().compareTo(pegawaiTermuda.getTanggal_lahir()) > 0)
+				if(pegawai.getTanggalLahir().compareTo(pegawaiTermuda.getTanggalLahir()) > 0)
 					pegawaiTermuda = pegawai;
 			}
 		}
 
 		return pegawaiTermuda;
+	}
+	
+	@Override
+	public List<PegawaiModel> getPegawaiByInstansiAndTanggalLahirAndTahunMasuk(InstansiModel instansi, Date tanggalLahir, String tahunMasuk) {
+		return pegawaiDb.findByInstansiAndTanggalLahirAndTahunMasukOrderByNipAsc(instansi, tanggalLahir, tahunMasuk);
 	}
 }
