@@ -98,10 +98,11 @@ public class PegawaiController {
 	@RequestMapping(value="/pegawai/ubah", method=RequestMethod.GET)
 	private String updatePegawai(@RequestParam(value="nip", required=true) String nip, Model model) {
 		PegawaiModel pegawai = pegawaiService.getPegawaiDetailByNip(nip);
-		model.addAttribute("pegawai", pegawai);
+		
 		model.addAttribute("listProvinsi", provinsiService.getAllProvinsi());
 		model.addAttribute("listInstansi", instansiService.getListInstansi());
 		model.addAttribute("listJabatan", jabatanService.getListJabatan());
+		model.addAttribute("pegawai", pegawai);
 		model.addAttribute("title", "Ubah Pegawai");
 		return "update-pegawai";
 	}
@@ -110,7 +111,7 @@ public class PegawaiController {
 	private String updatePegawaiSubmit(@ModelAttribute PegawaiModel pegawai, Model model) {
 		pegawaiService.addPegawai(pegawai);
 		model.addAttribute("title", "Sukses");
-		model.addAttribute("msg", "Pegawai berhasil diubah");
+		model.addAttribute("msg", "Pegawai dengan NIP " + pegawai.getNip() + " berhasil diubah");
 		return "success";
 	}
 	
